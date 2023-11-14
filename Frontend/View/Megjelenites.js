@@ -1,19 +1,24 @@
+import Megjelenitsor from "./megjelenitSor.js";
 class Megjelenites {
-    #lista = [];
-  constructor(lista, elem) {
-    this.#lista = lista;
-    elem.html('<table>');
+  #list = [];
+  constructor(lista,elem) {
+    this.#list = lista;
+    elem.html('<table class="table table-bordered table-striped">');
     this.tablaElem = elem.children("table");
     this.tablazatbeir();
   }
   tablazatbeir() {
-    let txt = "<tr><td>Nev:</td><td>Szulév:</td></tr>";
-    for (let index = 0; index < this.#lista.length; index++) {
-        txt += `<tr><td>${this.#lista[index].nev} </td><td>${this.#lista[index].szul}</td></tr>`;
-    }
-    console.log(txt);
-    this.tablaElem.append(txt);
+    this.#list.forEach((elem, index) => {
+        new Megjelenitsor(elem,this.tablaElem, index);
+        /*txt += "<tr>";
+        for (const key in elem) {
+            txt += `<td>${elem[key]}</td>`;
+            
+        }
+        txt+= `<td><button type="button" onclick="">✅</button></td><td><button type="button" onclick="">❌</button></td></tr>`;
+        txt += "</tr>";*/
+
+    });
   }
 }
-
 export default Megjelenites;

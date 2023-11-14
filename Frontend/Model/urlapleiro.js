@@ -1,4 +1,4 @@
-export const urlapLeiro={
+export const urlapleiro = {
     nev:{
         megjelenes:"Név",
         tipus:"text",

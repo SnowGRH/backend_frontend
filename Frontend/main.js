@@ -1,5 +1,5 @@
 import Control from "./Controller/Control.js"
 
 $(function () {
-    const CONTROL = new Control();
+    const CONTROL =  new Control();
 })

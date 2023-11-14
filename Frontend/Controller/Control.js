@@ -8,17 +8,31 @@ import UrlapView from "../View/UrlapView.js";
 class Control{
     constructor(){
         const DATA = new DataService();
-        DATA.getAxios("http://localhost:8000/api/writers",this.kiir);
+        const MODELEK = new UrlapModel();
+
+        this.Dataservice = new DataService;
+       
+        new UrlapView(MODELEK.leiro,$(".ujadat"));
+        this.Dataservice.getdata("model/adat.json",this.Megjelenites);
+    
+        DATA.getdata("http://localhost:8000/api/writers",this.kiir);
         //DATA.postAxios("http://localhost:8000/api/writers");
-        /* const URLAPMODEL = new UrlapModel();
-        const URLAPVIEW = new UrlapView();
+
+        
         $(window).on("submit",function (event) {
             DATA.postAxios("http://localhost:8000/api/writers",event.detail);
-        }) */
-    }
+        })
+        $(window).on("delete",function (event) {
+            const DATA = event.detail;
+            console.log(DATA);
+                DATA.deleteAxiosData("http://localhost:8000/api/writers", DATA);
+        })
+
+        }
+    
     kiir(lista){
         console.log(lista);
-        new Megjelenites(lista,$("article"));
+        new Megjelenites(lista,$(".adat"));
     }
 }
 export default Control

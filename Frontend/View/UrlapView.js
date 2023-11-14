@@ -1,58 +1,59 @@
-import NumberElemUrlap from "./NumberUrlapElem.js";
-import TextUrlapElem from "./TextUrlapElem.js";
-
-class UrlapView {
-
+import TexturlapElem from "./TextUrlapElem.js";
+import NumberUrlapElem from "./NumberUrlapElem.js";
+class Urlap{
     #leiro = {};
-    #urlapElemLista = []
+    #urlapElemlista = [];
     #osszesElemValidE = true;
     #urlapAdat = {};
-    constructor(szulElem, objList) {
-        this.szulElem = szulElem;
-        this.#leiro = objList;
-        this.szulElem.append("<form>")
-        this.formElem = this.szulElem.children("form");
-        this.#urlapOsszerak();
-        this.submitElem = $("#submit");
-        this.submitElem.on('click', (event) => {
-            event.preventDefault();
-            this.#osszesElemValidE = true;
-            this.#urlapElemLista.forEach(elem => {
-                this.#osszesElemValidE = this.#osszesElemValidE && elem.valid;
-            })
-            if (this.#osszesElemValidE) {
-                console.log("valid az uralp");
-                this.#urlapElemLista.forEach(elem => {
-                    this.#urlapAdat[elem.key] = elem.value;
-                    console.log(elem.value);
-                })
-                this.#esemeny("submit");
-            } else {
-                console.log("invalid");
-                $(".invalid").css("font-weight", "bold")
-            }
-
-        });
+    
+    constructor(leiro,elemSzul){
+    this.elemSzul = elemSzul;
+    this.#leiro = leiro;
+    this.elemSzul.append("<form>");
+    this.fromElem = this.elemSzul.children("form");
+    this.#urlapOsszerak();
+    this.submiteElem = $("#sumbit");
+    this.submiteElem.on('click', (event) => {
+      event.preventDefault()
+      this.#osszesElemValidE = true
+      this.#urlapElemlista.forEach((elem) => {
+        this.#osszesElemValidE = this.#osszesElemValidE && elem.valid;
+      });
+      if (this.#osszesElemValidE) {
+        console.log("valid az ur");
+        this.#urlapElemlista.forEach(elem => {
+            this.#urlapAdat[elem.key]=elem.value;
+          })
+          this.#esemeny("submit");
+      } else {
+        console.log("nem jó ");
+      }
+      
+    });
+  }
+  #urlapOsszerak() {
+    for (const key in this.#leiro) {
+      switch (this.#leiro[key].tipus) {
+        case "text":
+          this.#urlapElemlista.push(
+            new TexturlapElem(this.fromElem, this.#leiro[key], key)
+          );
+          break;
+        case "number":
+          // this.#numberElem(key);
+          this.#urlapElemlista.push(
+          new NumberUrlapElem(this.fromElem, this.#leiro[key], key));
+          break;
+        default:
+          console.log("nincs kész az");
+      }
     }
-
-    #urlapOsszerak() {
-        for (const key in this.#leiro) {
-            switch (this.#leiro[key].tipus) {
-                case "text":
-                    this.#urlapElemLista.push(new TextUrlapElem(key, this.#leiro[key], this.formElem));
-                    break;
-                case "number":
-                    this.#urlapElemLista.push(new NumberElemUrlap(key, this.#leiro[key], this.formElem))
-                    break;
-            }
-        }
-        let txt = `<input type='submit' id='submit' value='OK'>`
-        this.formElem.append(txt);
-    }
-
-    #esemeny(nev) {
-        const esemeny = new CustomEvent(nev, { detail: this.#urlapAdat });
-        dispatchEvent(esemeny);
-    }
-
-} export default UrlapView;
+    let txt = "<input type='submit' id='sumbit' value='Küldés'>";
+    this.fromElem.append(txt);
+  }
+  #esemeny(esemenynev){
+    const esemenyem = new CustomEvent(esemenynev, {detail: this.#urlapAdat});
+    window.dispatchEvent(esemenyem);
+}
+}
+export default Urlap

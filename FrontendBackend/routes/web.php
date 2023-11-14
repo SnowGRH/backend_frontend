@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/api/writers',[WriterControler::class,'index']);
+/* Route::get('/api/writers',[WriterControler::class,'index']);
 Route::post('/api/writers',[WriterControler::class,'store']);
+Route::delete('/api/writers/{id}',[WriterControler::class,'delete']); */
