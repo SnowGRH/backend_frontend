@@ -1,6 +1,6 @@
 class TexturlapElem {
-    #key = "";
-    #leiro = {};
+    #key;
+    #leiro ;
     #value="";
     #valid = true;
     constructor(fromElem, leiro, key) {
@@ -26,8 +26,8 @@ class TexturlapElem {
               this.invalidElem.addClass("elrejt")
           }else{
               this.#valid = false;
-              this.validElem.removeClass("elrejt")
-              this.invalidElem.addClass("elrejt")
+              this.invalidElem.removeClass("elrejt")
+              this.validElem.addClass("elrejt")
           }
         })
     }
@@ -54,7 +54,7 @@ class TexturlapElem {
       pattern="${this.#leiro.regex}"
       value="${this.#leiro.value}">
       <div class="valid elrejt">Ok</div>
-      <div class="invalid elrejt">${this.#leiro.invalid}</div>
+      <div class="invalid elrejt">${this.#leiro.validalas}</div>
     </div>
       `;
       this.fromElem.append(txt);

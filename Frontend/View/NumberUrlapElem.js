@@ -17,9 +17,6 @@ class NumberUrlapElem{
         .children(".invalid");
         this.inputElem.on("keyup",()=>{
           this.#value = this.inputElem.val();
-          console.log(this.#leiro.regex.min)
-          console.log(this.#value)
-          console.log(this.#leiro.regex.max)
           if (this.#leiro.regex.min <= this.#value && this.#value <= this.#leiro.regex.max) {
             this.#valid = true;
             this.validElem.removeClass("elrejt");
@@ -55,7 +52,7 @@ class NumberUrlapElem{
         pattern="${this.#leiro.regex}"
         value="${this.#leiro.value}">
         <div class="valid elrejt">Ok</div>
-        <div class="invalid elrejt">${this.#leiro.invalid}</div>
+        <div class="invalid elrejt">${this.#leiro.validalas}</div>
       </div>
         `;
         this.fromElem.append(txt);

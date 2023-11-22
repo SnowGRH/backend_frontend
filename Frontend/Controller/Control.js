@@ -14,7 +14,6 @@ class Control{
         this.Dataservice = new DataService;
        
         new UrlapView(MODELEK.leiro,$(".ujadat"));
-        this.Dataservice.getdata("model/adat.json",this.Megjelenites);
     
         DATA.getdata("http://localhost:8000/api/writers",this.kiir);
         //DATA.postAxios("http://localhost:8000/api/writers");
